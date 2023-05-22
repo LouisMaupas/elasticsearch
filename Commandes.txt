@@ -1,0 +1,21 @@
+* Pull l'image 
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+
+* Run l'image
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" --name es01 elasticsearch:8.7.1
+
+-e "xpack.security.enabled=false": -e définit une variable d'environnement ici pour désactiver la sécurité X-Pack d'Elasticsearch.
+
+Au besoin ajouter de l'espace dans l'editeur de registre : Ordinateur\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+
+* Créer un index
+
+* Définir la structure du mapping 
+
+* Importer les données du fichier CSV
+** Logstash 
+créer le fichier de config
+docker run --rm -it -v "chemin\vers\votre\fichier.conf:/usr/share/logstash/pipeline.conf" -v "chemin\vers\votre\fichier.csv:/usr/share/logstash/fichier.csv" docker.elastic.co/logstash/logstash:tag
+
+
+* Effectuer l'indexation des données 
