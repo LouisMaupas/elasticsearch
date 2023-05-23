@@ -1,0 +1,21 @@
+* Install de nextjs
+
+*  install dépendances Elasticsearch
+
+- Utiliser le client Elasticsearch pour créer un nouvel index ou mettre à jour un index existant.
+
+Un index dans Elasticsearch est similaire à une base de données dans le contexte des bases de données relationnelles. Il s'agit d'une structure qui organise et stocke les données de manière optimisée pour les opérations de recherche et d'analyse.
+
+Voici ce que cela signifie concrètement :
+
+Créer un nouvel index : Lorsque vous créez un nouvel index, vous spécifiez son nom et sa configuration. La configuration peut inclure des paramètres tels que les mappings des champs (la façon dont les données sont structurées), les paramètres de recherche et d'indexation, les filtres, etc. Une fois l'index créé, vous pouvez commencer à y insérer des documents.
+
+Mettre à jour un index existant : Si vous avez déjà un index existant et que vous souhaitez apporter des modifications à sa configuration ou à sa structure, vous pouvez utiliser l'API Elasticsearch pour mettre à jour cet index. Par exemple, vous pouvez ajouter de nouveaux champs, modifier les mappings existants, ajuster les paramètres d'indexation ou de recherche, etc.
+
+
+- Insérer les données du fichier CSV dans l'index Elasticsearch en utilisant les fonctions appropriées fournies par le client Elasticsearch.
+
+
+* api nextjs
+
+* interface web
