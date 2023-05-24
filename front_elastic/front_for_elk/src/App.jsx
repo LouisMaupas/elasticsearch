@@ -10,6 +10,7 @@ function App() {
     etoiles: "",
     commune: "",
   });
+  // TODO rehchercehr un établissement
 
   const fetchData = (url) => {
     fetch(`http://localhost:3000/${url}`)
@@ -75,6 +76,21 @@ function App() {
   return (
     <>
       <div>
+        <h1>Restos étoilés Lyonnais</h1>
+        <div>Rechercher un établissement</div>
+        {/* TODO recherche par mots clés */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="etablissement"
+            // value={}
+            // onChange={}
+            placeholder="Trouver un établissement"
+            required
+          />
+          <button type="submit">Rechercher</button>
+        </form>
+        <br />
         <div>
           Ajouter un resto
           <form onSubmit={handleSubmit}>
@@ -136,17 +152,18 @@ function App() {
             <th>Etoiles</th>
           </tr>
         </thead>
-        <tbody>
-          {res &&
-            res.map((item) => (
-              <tr key={item.id}>
+        {res ? (
+          <tbody>
+            {res.map((item) => (
+              <tr key={item._id}>
                 <td>{item._source.chef}</td>
                 <td>{item._source.commune}</td>
                 <td>{item._source.etablissement}</td>
                 <td>{item._source.etoiles}</td>
               </tr>
             ))}
-        </tbody>
+          </tbody>
+        ) : null}
       </table>
     </>
   );

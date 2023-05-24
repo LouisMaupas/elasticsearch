@@ -121,6 +121,34 @@ app.get("/star/:filter/:value", async (req, res) => {
   res.json(result);
 });
 
+// TODO WIP
+app.get("/search/etablissement", async (req, res) => {
+  let { q } = req.query;
+
+  if (!q) {
+    return res.json({ error: "Missing query parameter" });
+  }
+
+  let result;
+  try {
+    result = await client.search({
+      index: "restaurants",
+      body: {
+        query: {
+          match_phrase: {
+            etablissement: q,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({ error: "Failed to execute search query" });
+  }
+
+  res.json(result);
+});
+
 // POST
 app.post("/add", async (req, res) => {
   const { etablissement, chef, etoiles, commune } = req.body;
