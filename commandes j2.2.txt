@@ -1,0 +1,28 @@
+bin\elasticsearch.bat
+
+localhost -> mdp
+
+Faire le mdp
+user : elastic
+pw: mowXnTXcz4uvnnZID3Kj
+
+
+Puis dnas kibana / config
+on décommente 
+# =================== System: Elasticsearch ===================
+# The URLs of the Elasticsearch instances to use for all your queries.
+elasticsearch.hosts: ["http://localhost:9200"]
+
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "pass"
+
++ reset le password de kibana_system
+
+mdp : obnU=_ioO22DLmZE*F5F
+
+
+bin\kibana.bat dans 5601
+utiliser les id de elastic ?
+
+
+
