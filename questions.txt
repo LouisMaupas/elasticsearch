@@ -1,0 +1,10 @@
+Un index Elasticsearch est une collection de documents ayant des caractéristiques similaires. 
+Les "settings" de l'index dans Elasticsearch sont une configuration qui définit des caractéristiques de l'index comme le nombre de réplicas et de shards, et les paramètres personnalisés qui sont appliqués lors de l'indexation et la recherche de documents.
+
+    Stemming: Il s'agit d'un processus en linguistique informatique où les mots sont réduits à leur forme de base ou à leur racine. Par exemple, les mots "running", "runner", "ran" sont tous réduits à leur forme de base "run". C'est utile pour la recherche de texte complet, car cela permet de trouver des documents qui contiennent des variantes d'un mot de recherche.
+
+    Tokenizer: Dans le contexte d'Elasticsearch, un tokenizer est utilisé lors de l'indexation des données pour décomposer le texte en morceaux plus petits, généralement des mots. Par exemple, la chaîne de caractères "chatbot development" serait divisée en deux tokens : "chatbot" et "development". Ces tokens sont ensuite utilisés pour construire l'index et permettre la recherche.
+
+    Analyzer: Un analyzer dans Elasticsearch est une combinaison d'un tokenizer et d'un ou plusieurs filtres de token. Lors de l'indexation d'un document, le texte est d'abord décomposé en tokens par le tokenizer, puis chaque token est transformé par les filtres de token (par exemple, en passant par le processus de stemming). Les analyzeurs peuvent être configurés de manière personnalisée pour répondre à des besoins spécifiques.
+
+Les "settings" de l'index dans Elasticsearch servent à contrôler le comportement de l'index lors de l'indexation et de la recherche de documents. Ils peuvent être ajustés pour améliorer la pertinence des résultats de recherche et l'efficacité de l'indexation.

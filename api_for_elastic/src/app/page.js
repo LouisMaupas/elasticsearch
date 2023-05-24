@@ -10,24 +10,23 @@ export default function Home() {
 
   // Exemple de recherche
   async function searchDocuments(query) {
-    try {
-      const response = await elasticClient.search({
-        index: "votre_index",
-        body: {
-          query: {
-            match: {
-              field: query,
-            },
-          },
-        },
-      });
-
-      return response.body.hits.hits;
-    } catch (error) {
-      // Gérez les erreurs
-      console.error("Erreur de recherche Elasticsearch :", error);
-      throw error;
-    }
+    // try {
+    //   const response = await elasticClient.search({
+    //     index: "votre_index",
+    //     body: {
+    //       query: {
+    //         match: {
+    //           field: query,
+    //         },
+    //       },
+    //     },
+    //   });
+    //   return response.body.hits.hits;
+    // } catch (error) {
+    //   // Gérez les erreurs
+    //   console.error("Erreur de recherche Elasticsearch :", error);
+    //   throw error;
+    // }
   }
 
   return (
