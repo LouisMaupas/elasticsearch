@@ -40,6 +40,7 @@ function App() {
   };
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     fetch("http://localhost:3000/add", {
       method: "POST",
       headers: {
@@ -83,9 +84,28 @@ function App() {
     fetchData(`search/etablissement?q=${searchTerm}`);
   };
 
+  const handleDelete = (id) => {
+    event.preventDefault();
+    fetch(`http://localhost:3000/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        fetchData("all");
+      })
+      .catch((error) =>
+        console.error("There was a problem with your fetch operation:", error)
+      );
+  };
+
   useEffect(() => {
     fetchData("all");
-  }, []);
+  }, [res]);
 
   return (
     <>
@@ -172,6 +192,11 @@ function App() {
                 <td>{item._source.commune}</td>
                 <td>{item._source.etablissement}</td>
                 <td>{item._source.etoiles}</td>
+                <td>
+                  <button onClick={() => handleDelete(item._id)}>
+                    Supprimer
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

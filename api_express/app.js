@@ -121,7 +121,6 @@ app.get("/star/:filter/:value", async (req, res) => {
   res.json(result);
 });
 
-// TODO WIP
 app.get("/search/etablissement", async (req, res) => {
   let { q } = req.query;
 
@@ -173,6 +172,24 @@ app.post("/add", async (req, res) => {
   } catch (error) {
     console.error(error.meta.body.error);
     res.status(500).json({ error: "Failed to add restaurant" });
+  }
+});
+
+// DELETE
+app.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const response = await client.delete({
+      index: "restaurants",
+      id,
+    });
+
+    console.log(response);
+    res.status(200).json({ message: "Restaurant deleted successfully" });
+  } catch (error) {
+    console.error(error.meta.body.error);
+    res.status(500).json({ error: "Failed to delete restaurant" });
   }
 });
 
