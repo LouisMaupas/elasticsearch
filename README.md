@@ -1,8 +1,69 @@
 # ElasticSearch
 
+## Installer le projet
+
+Télécharger ElasticSearch et Kibana
+
+Créer un index (via Kibana Dev tools console par exemple)
+Définir la structure du mapping
+
+```
+PUT /restaurants
+{
+    "mappings": {
+        "properties": {
+            "chef": {
+                "type": "text"
+            },
+            "commune": {
+                "type": "text"
+            },
+            "etablissement": {
+                "type": "integer"
+            },
+            "etoiles": {
+                "type": "integer"
+            }
+        }
+    }
+}
+```
+
+Exemple d'ajout d'un restaurant
+
+```
+POST /restaurants/_doc/
+{
+  "chef": "Chef Dupont",
+  "commune": "69002",
+  "etablissement": Etablissement deluxe,
+  "etoiles": 3
+}
+
+```
+
+Récupérer tous les restaurants
+
+```
+GET /restaurants/_search
+```
+
+Ajout bulk
+
+```
+POST /restaurants/_bulk
+{ "index" : { } }
+{ "chef": "Père Ducros", "commune": "69008", "etablissement": Le Cordon Bleu, "etoiles": 3 }
+{ "index" : { } }
+{ "chef": "Chef Damien", "commune": "69007", "etablissement": 2, "750g": 2 }
+```
+
 ## TP1
 
-Voir branches "day1", "day2" et "day2.2"
+Voir branches
+[day1](https://github.com/LouisMaupas/elasticsearch/tree/day1)
+[day2](https://github.com/LouisMaupas/elasticsearch/tree/day2)
+[day2.2](https://github.com/LouisMaupas/elasticsearch/tree/day2.2)
 
 ### Installation d’ElasticSearch, Kibana et Logstash
 
@@ -28,7 +89,7 @@ Non on peut seulement ajouter des champs.
 
 ## TP2
 
-Voir branches "day2" et "day2.2"
+Voir branches [day2](https://github.com/LouisMaupas/elasticsearch/tree/day2) et [day2.2](https://github.com/LouisMaupas/elasticsearch/tree/day2.2)
 
 ### Questions
 
@@ -38,7 +99,7 @@ Voir branches "day2" et "day2.2"
 
 ## TP3
 
-Voir branches "day3" et "summary"
+Voir branches [day3](https://github.com/LouisMaupas/elasticsearch/tree/day3) et [summary](https://github.com/LouisMaupas/elasticsearch/tree/summary)
 
 ### Schéma global
 
@@ -99,3 +160,11 @@ La visualition de données.
 - _Qu’est-ce qu’un Dashboard ? https://www.elastic.co/fr/kibana/kibana-dashboard_
 
 C'est la combinaisaon de plusieurs visualisations en un seul tableau de bord pour avoir une vue d'ensemble de vos données.
+
+- dataview
+
+![](./dashboardpng.png)
+
+- dashboard
+
+![](./dataView.png)
