@@ -48,7 +48,7 @@ Voir branches "day3" et "summary"
 
 #### Detail
 
-![](./schemaGlobal.png)
+![](./SchemaGlobal.png)
 
 ### Questions
 
