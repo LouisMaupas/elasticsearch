@@ -1,0 +1,45 @@
+Réinstallé elasticsearch + kibana
+nouveau pw pour l'id elastic : q_v0cZek=Ne5VWdJ*HJg
+
+Run elasticsearch + kibana
+Generer token pour kibana : eyJ2ZXIiOiI4LjcuMSIsImFkciI6WyIxNzIuMTYuMS4xMjI6OTIwMCJdLCJmZ3IiOiIxNGYzNGUyMjQ1Yzc5ZTZhOWZlM2Q5MjMxNTQ4NDdkNzA4NmFiM2Q2NWEzZTlmYzJlYjhhZTlkYzY4MDM4ODNmIiwia2V5IjoidDE0S1RZZ0JmdG50cjl2YjNFV2Y6eTJfSlVqTTlRZi1tRmV5QzRqM1hudyJ9
+
+Se connecter sur http://localhost:5601 
+
+Déplacer le certificat http_ca dans le projet de l'API pour pouvoir l'utiliser
+
+
+
+_____ Partie ELK _____
+1) Créer l'index
+
+sur localhost:5601 /devTools
+
+
+
+PUT /voitures
+{
+    "mappings": {
+        "properties": {
+            "marque": {
+                "type": "text"
+            },
+            "modele": {
+                "type": "text"
+            },
+            "annee": {
+                "type": "integer"
+            },
+            "prix": {
+                "type": "integer"
+            }
+        }
+    }
+}
+
+2) On index des données
+
+POST nom_de_l_index/_doc (pour document)
+{
+
+}
