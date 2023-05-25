@@ -3,14 +3,13 @@ import "./App.css";
 
 function App() {
   const [res, setRes] = useState("");
-  const [starFilter, setStarFilter] = useState(null);
   const [newRestaurant, setNewRestaurant] = useState({
     etablissement: "",
     chef: "",
     etoiles: "",
     commune: "",
   });
-  // TODO rehchercehr un établissement
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchData = (url) => {
     fetch(`http://localhost:3000/${url}`)
@@ -41,6 +40,7 @@ function App() {
   };
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     fetch("http://localhost:3000/add", {
       method: "POST",
       headers: {
@@ -69,22 +69,55 @@ function App() {
       );
   };
 
+  /**
+   * Sets the search term based on the input event value.
+   *
+   * @param {Object} event - The input event.
+   * @return {void}
+   */
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    fetchData(`search/etablissement?q=${searchTerm}`);
+  };
+
+  const handleDelete = (id) => {
+    event.preventDefault();
+    fetch(`http://localhost:3000/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        fetchData("all");
+      })
+      .catch((error) =>
+        console.error("There was a problem with your fetch operation:", error)
+      );
+  };
+
   useEffect(() => {
     fetchData("all");
-  }, []);
+  }, [res]);
 
   return (
     <>
       <div>
         <h1>Restos étoilés Lyonnais</h1>
         <div>Rechercher un établissement</div>
-        {/* TODO recherche par mots clés */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSearchSubmit}>
           <input
             type="text"
             name="etablissement"
-            // value={}
-            // onChange={}
+            value={searchTerm}
+            onChange={handleSearchChange}
             placeholder="Trouver un établissement"
             required
           />
@@ -134,7 +167,6 @@ function App() {
       <div>
         Filtrer par étoiles:
         <select onChange={(e) => handleStarFilterChange(e.target.value)}>
-          <option value={null}>Tous les restaurants</option>
           <option value={"atleast/1"}>Au moins 1 étoile</option>
           <option value={"atleast/2"}>Au moins 2 étoiles</option>
           <option value={"exactly/3"}>Exactement 3 étoiles</option>
@@ -160,6 +192,11 @@ function App() {
                 <td>{item._source.commune}</td>
                 <td>{item._source.etablissement}</td>
                 <td>{item._source.etoiles}</td>
+                <td>
+                  <button onClick={() => handleDelete(item._id)}>
+                    Supprimer
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
